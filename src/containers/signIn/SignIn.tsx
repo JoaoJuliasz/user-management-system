@@ -1,52 +1,21 @@
-import { useEffect, useState } from "react";
-import {
-  getUserInformationFromStorage,
-  setUserStorageInformation,
-} from "../../utils";
-import { useNavigate } from "react-router";
-import { Flex, notification } from "antd";
+import { useState } from "react";
+import { Flex } from "antd";
 import { LabelInput, AuthenticationWrapper } from "../../components";
 
 import style from "./signIn.module.css";
-import { instance } from "../../instance";
-import type { UserAuthenticationResponse } from "../../types";
+import { useAuthenticateUser, useHomeRedirect } from "../../hooks";
 
 export const SignIn = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const [api, contextHolder] = notification.useNotification();
+  const { authenticateUser, toast } = useAuthenticateUser();
 
-  const navigate = useNavigate();
+  useHomeRedirect();
 
   const handleClick = async () => {
-    try {
-      const { data } = await instance.post<UserAuthenticationResponse>(
-        "login",
-        {
-          email,
-          password,
-        }
-      );
-      setUserStorageInformation(data.token, 1);
-      navigate("/");
-    } catch (error: any) {
-      console.error(error.response.data.error);
-      api.open({
-        type: "error",
-        message: "Error",
-        description: error.response.data.error,
-      });
-    }
+    authenticateUser(email, password, "sign-in");
   };
-
-  useEffect(() => {
-    const { token } = getUserInformationFromStorage();
-    if (token) {
-      navigate("/");
-    }
-  }, []);
-
   return (
     <AuthenticationWrapper
       btnText="Sign in"
@@ -54,7 +23,7 @@ export const SignIn = () => {
       onClick={handleClick}
       isSignIn={true}
     >
-      {contextHolder}
+      {toast}
       <Flex vertical={true} gap={6} className={style.wrapper}>
         <LabelInput label="Email" inputValue={email} setInputValue={setEmail} />
         <LabelInput
