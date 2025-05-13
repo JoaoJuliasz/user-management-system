@@ -1,3 +1,3 @@
 export * from "./signIn";
-export * from "./Home";
+export * from "./home";
 export * from './signUp'

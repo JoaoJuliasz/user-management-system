@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { instance } from "../instance";
-import { getUserInformationFromStorage } from "../utils";
-import { type User, type UserRequestResponse } from "../types";
+import { instance } from "../../instance";
+import { getUserInformationFromStorage } from "../../utils";
+import { type User, type UserRequestResponse } from "../../types";
 import { Spin } from "antd";
+import { UserListWrapper } from "./components";
 
 export const Home = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -32,5 +33,5 @@ export const Home = () => {
 
   if (!user) return null;
 
-  return <div>Hello {user?.first_name}!</div>;
+  return <UserListWrapper />;
 };
