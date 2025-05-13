@@ -1,1 +1,2 @@
-export * from './getUserInformationFromStorage'
+export * from "./getUserInformationFromStorage";
+export * from "./setUserStorageInformation";

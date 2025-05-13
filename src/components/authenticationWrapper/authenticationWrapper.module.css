@@ -10,6 +10,9 @@
     font-weight: 700;
     font-size: 20px;
     color: #3d3d3d;
+    border-bottom: 1px solid #edf2f7;
+    width: 100%;
+    padding-bottom: 4px;
 }
 
 .container .button {

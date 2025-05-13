@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import { getUserInformationFromStorage } from "../../utils";
+import {
+  getUserInformationFromStorage,
+  setUserStorageInformation,
+} from "../../utils";
 import { useNavigate } from "react-router";
 import { Flex, notification } from "antd";
 import { LabelInput, AuthenticationWrapper } from "../../components";
 
 import style from "./signIn.module.css";
 import { instance } from "../../instance";
+import type { UserAuthenticationResponse } from "../../types";
 
 export const SignIn = () => {
   const [email, setEmail] = useState<string>("");
@@ -17,11 +21,14 @@ export const SignIn = () => {
 
   const handleClick = async () => {
     try {
-      const { data } = await instance.post("login", {
-        email,
-        password,
-      });
-      localStorage.setItem("user_token", JSON.stringify(data.token));
+      const { data } = await instance.post<UserAuthenticationResponse>(
+        "login",
+        {
+          email,
+          password,
+        }
+      );
+      setUserStorageInformation(data.token, 1);
       navigate("/");
     } catch (error: any) {
       console.error(error.response.data.error);

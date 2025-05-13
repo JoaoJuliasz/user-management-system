@@ -5,6 +5,8 @@ import { useState } from "react";
 import style from "./signUp.module.css";
 import { instance } from "../../instance";
 import { useNavigate } from "react-router";
+import { setUserStorageInformation } from "../../utils";
+import type { UserAuthenticationResponse } from "../../types";
 
 export const SignUp = () => {
   const [email, setEmail] = useState<string>("");
@@ -29,11 +31,11 @@ export const SignUp = () => {
       return
     }
     try {
-      const { data } = await instance.post("login", {
+      const { data } = await instance.post<UserAuthenticationResponse>("register", {
         email,
         password,
       });
-      localStorage.setItem("user_token", JSON.stringify(data.token));
+      data.id && setUserStorageInformation(data.token, data.id)
       navigate("/");
     } catch (error: any) {
       console.error(error.response.data.error);
