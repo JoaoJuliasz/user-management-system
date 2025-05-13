@@ -31,10 +31,17 @@ export const AuthenticationWrapper = ({
       {isSignIn ? (
         <Flex gap={4} align="center">
           <Text>Don't have an account?</Text>
-          <Link className={style.link} to="/">Sign up</Link>
+          <Link className={style.link} to="/sign-up">
+            Sign up
+          </Link>
         </Flex>
       ) : (
-        <Text></Text>
+        <Flex gap={4} align="center">
+          <Text>Already have an account?</Text>
+          <Link className={style.link} to="/sign-in">
+            Sign in
+          </Link>
+        </Flex>
       )}
     </Flex>
   );

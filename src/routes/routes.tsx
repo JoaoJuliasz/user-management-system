@@ -1,6 +1,6 @@
 // routes.tsx
 import { createBrowserRouter } from "react-router";
-import { SignIn, Home } from "../containers";
+import { SignIn, Home, SignUp } from "../containers";
 import { ProtectedRoute } from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
@@ -13,7 +13,11 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/login",
+    path: "/sign-in",
     element: <SignIn />,
+  },
+  {
+    path: "/sign-up",
+    element: <SignUp />,
   },
 ]);

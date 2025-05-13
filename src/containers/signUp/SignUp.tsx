@@ -1,21 +1,33 @@
-import { useEffect, useState } from "react";
-import { getUserInformationFromStorage } from "../../utils";
-import { useNavigate } from "react-router";
 import { Flex, notification } from "antd";
-import { LabelInput, AuthenticationWrapper } from "../../components";
+import { AuthenticationWrapper, LabelInput } from "../../components";
+import { useState } from "react";
 
-import style from "./signIn.module.css";
+import style from "./signUp.module.css";
 import { instance } from "../../instance";
+import { useNavigate } from "react-router";
 
-export const SignIn = () => {
+export const SignUp = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const [api, contextHolder] = notification.useNotification();
 
   const navigate = useNavigate();
 
+  const openToast = (message: string) => {
+    api.open({
+      type: "error",
+      message: "Error",
+      description: message,
+    });
+  };
+
   const handleClick = async () => {
+    if (password !== confirmPassword) {
+      openToast("Passwords are different");
+      return
+    }
     try {
       const { data } = await instance.post("login", {
         email,
@@ -25,35 +37,29 @@ export const SignIn = () => {
       navigate("/");
     } catch (error: any) {
       console.error(error.response.data.error);
-      api.open({
-        type: "error",
-        message: "Error",
-        description: error.response.data.error,
-      });
+      openToast(error.response.data.error);
     }
   };
 
-  useEffect(() => {
-    const { token } = getUserInformationFromStorage();
-    if (token) {
-      navigate("/");
-    }
-  }, []);
-
   return (
     <AuthenticationWrapper
-      btnText="Sign in"
-      title="Login"
+      btnText="Sign up"
+      title="Sign Up"
       onClick={handleClick}
-      isSignIn={true}
     >
       {contextHolder}
       <Flex vertical={true} gap={6} className={style.wrapper}>
         <LabelInput label="Email" inputValue={email} setInputValue={setEmail} />
         <LabelInput
-          label="Password"
+          label="New Password"
           inputValue={password}
           setInputValue={setPassword}
+          type="password"
+        />
+        <LabelInput
+          label="Confirm Password"
+          inputValue={confirmPassword}
+          setInputValue={setConfirmPassword}
           type="password"
         />
       </Flex>

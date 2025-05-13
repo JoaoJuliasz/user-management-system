@@ -6,7 +6,7 @@ export function ProtectedRoute({ children }: { children: ReactNode }) {
   const { token } = getUserInformationFromStorage();
 
   if (!token) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/sign-up" replace />;
   }
 
   return <>{children}</>;
