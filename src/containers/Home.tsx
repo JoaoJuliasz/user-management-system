@@ -1,16 +1,36 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { instance } from "../instance";
+import { getUserInformationFromStorage } from "../utils";
+import { type User, type UserRequestResponse } from "../types";
+import { Spin } from "antd";
 
 export const Home = () => {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
-    useEffect(() => {
-        instance.get('users/1')
-        .then(res => console.log({res}))
-    })
+  const init = useCallback(async () => {
+    const { userId } = getUserInformationFromStorage();
+    if (!userId) return;
+    setLoading(true);
+    try {
+      const { data } = await instance.get<UserRequestResponse>(
+        `users/${userId}`
+      );
+      setUser(data.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
-    return (
-        <div>
-            Hello, Person!
-        </div>
-    );
+  useEffect(() => {
+    init();
+  }, [init]);
+
+  if (loading) return <Spin size="large" />;
+
+  if (!user) return null;
+
+  return <div>Hello {user?.first_name}!</div>;
 };
