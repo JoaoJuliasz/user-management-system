@@ -1,0 +1,8 @@
+.container {
+    width: 100%;
+}
+
+.container .text {
+    font-weight: 500;
+    color: #3d3d3d;
+}

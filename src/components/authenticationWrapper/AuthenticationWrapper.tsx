@@ -1,0 +1,41 @@
+import { Button, Flex, Typography } from "antd";
+
+import type { PropsWithChildren } from "react";
+
+import style from "./authenticationWrapper.module.css";
+import { Link } from "react-router";
+
+const { Text } = Typography;
+
+type AuthenticationWrapperProps = PropsWithChildren<{
+  title: string;
+  btnText: string;
+  isSignIn?: boolean;
+  onClick: () => void;
+}>;
+
+export const AuthenticationWrapper = ({
+  btnText,
+  title,
+  isSignIn,
+  children,
+  onClick,
+}: AuthenticationWrapperProps) => {
+  return (
+    <Flex className={style.container} vertical={true} gap={12} align="center">
+      <Text className={style.text}>{title}</Text>
+      {children}
+      <Button className={style.button} type="primary" onClick={onClick}>
+        {btnText}
+      </Button>
+      {isSignIn ? (
+        <Flex gap={4} align="center">
+          <Text>Don't have an account?</Text>
+          <Link className={style.link} to="/">Sign up</Link>
+        </Flex>
+      ) : (
+        <Text></Text>
+      )}
+    </Flex>
+  );
+};
