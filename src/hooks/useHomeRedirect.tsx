@@ -9,5 +9,5 @@ export const useHomeRedirect = () => {
     if (token) {
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
 };

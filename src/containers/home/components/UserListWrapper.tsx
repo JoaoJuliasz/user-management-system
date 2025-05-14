@@ -4,6 +4,7 @@ import { UserList } from "./UserList";
 import style from "./userListWrapper.module.css";
 import { useDrawer } from "../../../hooks";
 import { UserInfoDrawer } from "./UserInfoDrawer";
+import { PlusOutlined } from "@ant-design/icons";
 
 export const UserListWrapper = () => {
   const { open, onClose, onOpen } = useDrawer();
@@ -16,7 +17,14 @@ export const UserListWrapper = () => {
         isCreate
         open={open}
       />
-      <Button onClick={onOpen} style={{ alignSelf: "end" }}>
+      <Button
+        onClick={onOpen}
+        style={{ alignSelf: "end" }}
+        iconPosition="end"
+        icon={<PlusOutlined />}
+        color="primary"
+        variant="solid"
+      >
         New
       </Button>
       <UserList />

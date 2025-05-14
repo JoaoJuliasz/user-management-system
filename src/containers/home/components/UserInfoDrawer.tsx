@@ -6,7 +6,7 @@ import { useUserActions } from "../../../hooks";
 
 type UserInfoDrawerProps = {
   title: string;
-  open: boolean
+  open: boolean;
   userInfo?: User;
   isCreate?: boolean;
   index?: number;
@@ -60,6 +60,7 @@ export const UserInfoDrawer = ({
     if (open && !user.first_name && userInfo) {
       setUser(userInfo);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo, open]);
 
   return (
@@ -94,11 +95,15 @@ export const UserInfoDrawer = ({
             />
           </Flex>
           <Flex gap={6} style={{ alignSelf: "end" }}>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={onClose} color="default" variant="filled">
+              Cancel
+            </Button>
             <Button
               disabled={!user.email || !user.first_name || !user.last_name}
               loading={loading}
               onClick={handleSubmit}
+              color="primary"
+              variant="filled"
             >
               {isCreate ? "Create" : "Save"}
             </Button>

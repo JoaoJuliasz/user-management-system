@@ -7,7 +7,6 @@ export const useTableData = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const {
-    tableData,
     setTableData,
     cachePagination,
     setCachePagination,
@@ -44,11 +43,18 @@ export const useTableData = () => {
         setLoading(false);
       }
     },
-    [tableData, pagination]
+    [
+      pagination,
+      cachePagination,
+      setCachePagination,
+      setPagination,
+      setTableData,
+    ]
   );
 
   useEffect(() => {
     fetchUsers(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { loading, fetchUsers };

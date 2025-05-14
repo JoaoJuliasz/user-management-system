@@ -27,12 +27,15 @@ export const useUserActions = (isCreate?: boolean, index?: number) => {
     [api]
   );
 
-  const fetchAction = useCallback((user: User) => {
-    if (isCreate) {
-      return instance.post<User>("users", { ...user });
-    }
-    return instance.put<User>(`users/${user.id}`, { ...user });
-  }, []);
+  const fetchAction = useCallback(
+    (user: User) => {
+      if (isCreate) {
+        return instance.post<User>("users", { ...user });
+      }
+      return instance.put<User>(`users/${user.id}`, { ...user });
+    },
+    [isCreate]
+  );
 
   const updateUser = useCallback(
     (data: User) => {
@@ -52,7 +55,7 @@ export const useUserActions = (isCreate?: boolean, index?: number) => {
       });
       openToast("User updated!");
     },
-    [index, openToast]
+    [index, pagination, setCachePagination, setTableData, openToast]
   );
 
   const createUser = useCallback(
@@ -90,7 +93,14 @@ export const useUserActions = (isCreate?: boolean, index?: number) => {
       });
       openToast("User created!");
     },
-    [openToast]
+    [
+      pagination,
+      setCachePagination,
+      setPagination,
+      setTableData,
+      tableData.length,
+      openToast,
+    ]
   );
 
   const removeUser = useCallback(() => {
@@ -110,7 +120,7 @@ export const useUserActions = (isCreate?: boolean, index?: number) => {
       if (!prev) return null;
       return { ...prev, total: prev.total - 1 };
     });
-  }, [index]);
+  }, [index, pagination, setCachePagination, setPagination, setTableData]);
 
   return { contextHolder, createUser, fetchAction, updateUser, removeUser };
 };

@@ -10,6 +10,7 @@ const { Text } = Typography;
 type AuthenticationWrapperProps = PropsWithChildren<{
   title: string;
   btnText: string;
+  loading: boolean;
   isSignIn?: boolean;
   onClick: () => void;
 }>;
@@ -18,6 +19,7 @@ export const AuthenticationWrapper = ({
   btnText,
   title,
   isSignIn,
+  loading,
   children,
   onClick,
 }: AuthenticationWrapperProps) => {
@@ -25,7 +27,12 @@ export const AuthenticationWrapper = ({
     <Flex className={style.container} vertical={true} gap={12} align="center">
       <Text className={style.text}>{title}</Text>
       {children}
-      <Button className={style.button} type="primary" onClick={onClick}>
+      <Button
+        className={style.button}
+        type="primary"
+        onClick={onClick}
+        loading={loading}
+      >
         {btnText}
       </Button>
       {isSignIn ? (

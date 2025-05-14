@@ -25,6 +25,7 @@ export const useTableConfig = () => {
       render: (_, record, index) => (
         <UserListActions userInfo={record} index={index} />
       ),
+      width: '80px'
     },
   ] as ColumnsType<User>;
 };

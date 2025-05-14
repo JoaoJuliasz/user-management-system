@@ -1,4 +1,4 @@
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import { Button, Flex, Popconfirm } from "antd";
 import { useDrawer, useUserActions } from "../../../hooks";
 import { UserInfoDrawer } from "./UserInfoDrawer";
@@ -22,9 +22,12 @@ export const UserListActions = ({ userInfo, index }: UserListActionsProps) => {
         index={index}
         open={open}
       />
-      <Button onClick={onOpen}>
-        <EditOutlined />
-      </Button>
+      <Button
+        color="primary"
+        onClick={onOpen}
+        icon={<EditTwoTone />}
+        variant="text"
+      />
       <Popconfirm
         title="Delete user"
         description="Are you sure to delete this user?"
@@ -32,9 +35,11 @@ export const UserListActions = ({ userInfo, index }: UserListActionsProps) => {
         okText="Yes"
         cancelText="No"
       >
-        <Button danger>
-          <DeleteOutlined color="#E53E3E" />
-        </Button>
+        <Button
+          color="danger"
+          icon={<DeleteTwoTone twoToneColor="#ff4d4f" />}
+          variant="text"
+        />
       </Popconfirm>
     </Flex>
   );

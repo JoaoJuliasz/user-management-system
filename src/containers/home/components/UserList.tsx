@@ -8,7 +8,9 @@ export const UserList = () => {
   const { tableData, pagination } = useHomeContext();
 
   const onPaginationChange = (paginationConfig: TablePaginationConfig) => {
-    paginationConfig.current && fetchUsers(paginationConfig.current);
+    if (paginationConfig.current) {
+      fetchUsers(paginationConfig.current);
+    }
   };
 
   return (

@@ -16,7 +16,7 @@ export const SignUp = () => {
     confirmPassword: "",
   });
 
-  const { authenticateUser, openToast, toast } = useAuthenticateUser();
+  const { authenticateUser, openToast, loading, toast } = useAuthenticateUser();
 
   useHomeRedirect();
 
@@ -39,6 +39,7 @@ export const SignUp = () => {
       btnText="Sign up"
       title="Sign Up"
       onClick={handleClick}
+      loading={loading}
     >
       {toast}
       <Flex vertical={true} gap={6} className={style.wrapper}>
