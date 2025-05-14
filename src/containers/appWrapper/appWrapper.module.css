@@ -1,0 +1,19 @@
+.wrapper {
+    margin: 0 auto;
+    padding: 2rem 0;
+    text-align: center;
+    width: 100%;
+    height: calc(100% - 64px);
+    position: relative;
+    background: var(--custom-bg-color);
+}
+
+.light {
+    --custom-bg-color: #ffffff;
+    --custom-border-color: #edf2f7;
+}
+
+.dark {
+    --custom-bg-color: #1a1a1a;
+    --custom-border-color: #2a2a2a;
+}

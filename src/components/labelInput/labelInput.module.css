@@ -4,5 +4,5 @@
 
 .container .text {
     font-weight: 500;
-    color: #3d3d3d;
+    color: var(--ant-color-text);
 }

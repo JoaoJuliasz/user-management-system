@@ -17,7 +17,6 @@ export const useUserActions = (isCreate?: boolean, index?: number) => {
 
   const openToast = useCallback(
     (message: string) => {
-      console.log("ue");
       api.open({
         type: "success",
         message: "Success",

@@ -1,5 +1,6 @@
 .container {
-    border: 1px solid #edf2f7;
+    border: 1px solid;
+    border-color: var(--custom-border-color);
     border-radius: 4px;
     max-width: 400px;
     margin: 0 auto;
@@ -9,8 +10,9 @@
 .container .text {
     font-weight: 700;
     font-size: 20px;
-    color: #3d3d3d;
-    border-bottom: 1px solid #edf2f7;
+    color: var(--ant-color-text);
+    border-bottom: 1px solid;
+    border-color: var(--custom-border-color);
     width: 100%;
     padding-bottom: 4px;
 }

@@ -1,4 +1,4 @@
-import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
+import { DeleteFilled, DeleteTwoTone, EditFilled, EditTwoTone } from "@ant-design/icons";
 import { Button, Flex, Popconfirm } from "antd";
 import { useDrawer, useUserActions } from "../../../hooks";
 import { UserInfoDrawer } from "./UserInfoDrawer";
@@ -25,7 +25,7 @@ export const UserListActions = ({ userInfo, index }: UserListActionsProps) => {
       <Button
         color="primary"
         onClick={onOpen}
-        icon={<EditTwoTone />}
+        icon={<EditFilled />}
         variant="text"
       />
       <Popconfirm
@@ -37,7 +37,7 @@ export const UserListActions = ({ userInfo, index }: UserListActionsProps) => {
       >
         <Button
           color="danger"
-          icon={<DeleteTwoTone twoToneColor="#ff4d4f" />}
+          icon={<DeleteFilled />}
           variant="text"
         />
       </Popconfirm>
