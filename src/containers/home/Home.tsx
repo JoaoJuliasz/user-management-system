@@ -1,13 +1,25 @@
 import { useCallback, useEffect, useState } from "react";
 import { instance } from "../../instance";
 import { getUserInformationFromStorage } from "../../utils";
-import { type User, type UserRequestResponse } from "../../types";
+import {
+  type Pagination,
+  type User,
+  type UserRequestResponse,
+} from "../../types";
 import { Spin } from "antd";
 import { UserListWrapper } from "./components";
+
+import style from "./home.module.css";
+import { HomeProvider } from "./context";
 
 export const Home = () => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [tableData, setTableData] = useState<User[]>([]);
+  const [cachePagination, setCachePagination] = useState<
+    Record<number, User[]>
+  >({});
+  const [pagination, setPagination] = useState<Pagination | null>(null);
 
   const init = useCallback(async () => {
     const { userId } = getUserInformationFromStorage();
@@ -33,5 +45,20 @@ export const Home = () => {
 
   if (!user) return null;
 
-  return <UserListWrapper />;
+  return (
+    <HomeProvider
+      value={{
+        tableData,
+        setTableData,
+        cachePagination,
+        setCachePagination,
+        pagination,
+        setPagination,
+      }}
+    >
+      <div className={style.container}>
+        <UserListWrapper />
+      </div>
+    </HomeProvider>
+  );
 };

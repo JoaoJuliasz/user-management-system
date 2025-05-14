@@ -22,7 +22,9 @@ export const useTableConfig = () => {
     {
       title: "Actions",
       key: "action",
-      render: (_, record) => <UserListActions />,
+      render: (_, record, index) => (
+        <UserListActions userInfo={record} index={index} />
+      ),
     },
   ] as ColumnsType<User>;
 };

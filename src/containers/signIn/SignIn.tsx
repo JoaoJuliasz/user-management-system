@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import { Flex } from "antd";
 import { LabelInput, AuthenticationWrapper } from "../../components";
 
@@ -6,16 +6,25 @@ import style from "./signIn.module.css";
 import { useAuthenticateUser, useHomeRedirect } from "../../hooks";
 
 export const SignIn = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [form, setForm] = useState<{ email: string; password: string }>({
+    email: "",
+    password: "",
+  });
 
   const { authenticateUser, toast } = useAuthenticateUser();
 
   useHomeRedirect();
 
   const handleClick = async () => {
+    const { email, password } = form;
     authenticateUser(email, password, "sign-in");
   };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
     <AuthenticationWrapper
       btnText="Sign in"
@@ -25,11 +34,17 @@ export const SignIn = () => {
     >
       {toast}
       <Flex vertical={true} gap={6} className={style.wrapper}>
-        <LabelInput label="Email" inputValue={email} setInputValue={setEmail} />
         <LabelInput
+          value={form.email}
+          onChange={handleChange}
+          label="Email"
+          name="email"
+        />
+        <LabelInput
+          value={form.password}
+          onChange={handleChange}
           label="Password"
-          inputValue={password}
-          setInputValue={setPassword}
+          name="password"
           type="password"
         />
       </Flex>

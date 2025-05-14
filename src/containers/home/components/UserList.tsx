@@ -1,9 +1,11 @@
 import { Table, type TablePaginationConfig } from "antd";
 import { useTableConfig, useTableData } from "../../../hooks";
+import { useHomeContext } from "../context";
 
 export const UserList = () => {
-  const { loading, pagination, tableData, fetchUsers } = useTableData();
+  const { loading, fetchUsers } = useTableData();
   const columns = useTableConfig();
+  const { tableData, pagination } = useHomeContext();
 
   const onPaginationChange = (paginationConfig: TablePaginationConfig) => {
     paginationConfig.current && fetchUsers(paginationConfig.current);
@@ -15,6 +17,7 @@ export const UserList = () => {
       columns={columns}
       onChange={onPaginationChange}
       loading={loading}
+      rowKey="id"
       pagination={{
         pageSize: pagination?.per_page,
         current: pagination?.page,
