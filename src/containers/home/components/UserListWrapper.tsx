@@ -10,8 +10,15 @@ export const UserListWrapper = () => {
 
   return (
     <Flex vertical={true} gap={6} className={style.wrapper}>
-      {open && <UserInfoDrawer title="Create user" onClose={onClose} isCreate />}
-      <Button onClick={onOpen} style={{ alignSelf: "end" }}>New</Button>
+      <UserInfoDrawer
+        title="Create user"
+        onClose={onClose}
+        isCreate
+        open={open}
+      />
+      <Button onClick={onOpen} style={{ alignSelf: "end" }}>
+        New
+      </Button>
       <UserList />
     </Flex>
   );
