@@ -20,6 +20,7 @@ export const Home = () => {
     Record<number, User[]>
   >({});
   const [pagination, setPagination] = useState<Pagination | null>(null);
+  const [shouldTriggerFetch, setShouldTriggerFetch] = useState(false);
 
   const init = useCallback(async () => {
     const { userId } = getUserInformationFromStorage();
@@ -54,6 +55,8 @@ export const Home = () => {
         setCachePagination,
         pagination,
         setPagination,
+        shouldTriggerFetch,
+        setShouldTriggerFetch,
       }}
     >
       <div className={style.container}>

@@ -12,6 +12,8 @@ export const useTableData = () => {
     setCachePagination,
     pagination,
     setPagination,
+    shouldTriggerFetch,
+    setShouldTriggerFetch,
   } = useHomeContext();
 
   const fetchUsers = useCallback(
@@ -56,6 +58,14 @@ export const useTableData = () => {
     fetchUsers(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (shouldTriggerFetch) {
+      fetchUsers(1);
+      setShouldTriggerFetch(false)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shouldTriggerFetch]);
 
   return { loading, fetchUsers };
 };

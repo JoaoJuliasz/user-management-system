@@ -13,6 +13,7 @@ export const useUserActions = (isCreate?: boolean, index?: number) => {
     pagination,
     setPagination,
     setCachePagination,
+    setShouldTriggerFetch,
   } = useHomeContext();
 
   const openToast = useCallback(
@@ -103,6 +104,9 @@ export const useUserActions = (isCreate?: boolean, index?: number) => {
   );
 
   const removeUser = useCallback(() => {
+    if (tableData.length === 1) {
+      setShouldTriggerFetch(true);
+    }
     setTableData((prev) => {
       if (index === undefined) return prev;
       const updated = [...prev];
@@ -117,9 +121,12 @@ export const useUserActions = (isCreate?: boolean, index?: number) => {
     });
     setPagination((prev) => {
       if (!prev) return null;
-      return { ...prev, total: prev.total - 1 };
+      return {
+        ...prev,
+        total: prev.total - 1,
+      };
     });
-  }, [index, pagination, setCachePagination, setPagination, setTableData]);
+  }, [index, pagination, tableData, setShouldTriggerFetch, setCachePagination, setPagination, setTableData]);
 
   return { contextHolder, createUser, fetchAction, updateUser, removeUser };
 };

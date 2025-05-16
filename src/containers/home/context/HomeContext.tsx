@@ -8,6 +8,8 @@ type HomeContextType = {
   setCachePagination: Dispatch<SetStateAction<Record<number, User[]>>>;
   pagination: Pagination | null;
   setPagination: Dispatch<SetStateAction<Pagination | null>>;
+  shouldTriggerFetch: boolean;
+  setShouldTriggerFetch: Dispatch<SetStateAction<boolean>>;
 };
 
 const HomeContext = createContext<HomeContextType | null>(null);
