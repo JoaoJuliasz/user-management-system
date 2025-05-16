@@ -1,0 +1,7 @@
+node_modules
+dist
+.vite
+.cypress
+cypress
+cypress.config.ts
+pnpm-lock.yaml

@@ -1,4 +1,4 @@
-import { DeleteFilled, DeleteTwoTone, EditFilled, EditTwoTone } from "@ant-design/icons";
+import { DeleteFilled, EditFilled } from "@ant-design/icons";
 import { Button, Flex, Popconfirm } from "antd";
 import { useDrawer, useUserActions } from "../../../hooks";
 import { UserInfoDrawer } from "./UserInfoDrawer";
