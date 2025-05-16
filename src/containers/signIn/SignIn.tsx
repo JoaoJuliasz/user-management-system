@@ -40,6 +40,7 @@ export const SignIn = () => {
           onChange={handleChange}
           label="Email"
           name="email"
+          data-testid="email-input"
         />
         <LabelInput
           value={form.password}
@@ -47,6 +48,7 @@ export const SignIn = () => {
           label="Password"
           name="password"
           type="password"
+          data-testid="password-input"
         />
       </Flex>
     </AuthenticationWrapper>

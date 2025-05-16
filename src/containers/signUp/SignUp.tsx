@@ -48,6 +48,8 @@ export const SignUp = () => {
           onChange={handleChange}
           label="Email"
           name="email"
+          id="email-input"
+          data-testid="email-input"
         />
         <LabelInput
           value={form.password}
@@ -55,6 +57,7 @@ export const SignUp = () => {
           label="Password"
           name="password"
           type="password"
+          data-testid="password-input"
         />
         <LabelInput
           value={form.confirmPassword}
@@ -62,6 +65,7 @@ export const SignUp = () => {
           label="Password"
           name="confirmPassword"
           type="password"
+          data-testid="new-password-input"
         />
       </Flex>
     </AuthenticationWrapper>

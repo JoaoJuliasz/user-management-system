@@ -80,18 +80,21 @@ export const UserInfoDrawer = ({
               value={user.email}
               name="email"
               onChange={handleChange}
+              data-testid="email-input"
             />
             <LabelInput
               label="First Name"
               value={user.first_name}
               name="first_name"
               onChange={handleChange}
+              data-testid="first_name-input"
             />
             <LabelInput
               label="Last Name"
               value={user.last_name}
               name="last_name"
               onChange={handleChange}
+              data-testid="last_name-input"
             />
           </Flex>
           <Flex gap={6} style={{ alignSelf: "end" }}>
@@ -104,6 +107,7 @@ export const UserInfoDrawer = ({
               onClick={handleSubmit}
               color="primary"
               variant="filled"
+              data-testid="user-trigger"
             >
               {isCreate ? "Create" : "Save"}
             </Button>

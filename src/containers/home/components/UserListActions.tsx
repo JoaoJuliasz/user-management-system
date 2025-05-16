@@ -27,6 +27,7 @@ export const UserListActions = ({ userInfo, index }: UserListActionsProps) => {
         onClick={onOpen}
         icon={<EditFilled />}
         variant="text"
+        data-testid={`edit-user-${index}`}
       />
       <Popconfirm
         title="Delete user"
@@ -39,6 +40,7 @@ export const UserListActions = ({ userInfo, index }: UserListActionsProps) => {
           color="danger"
           icon={<DeleteFilled />}
           variant="text"
+          data-testid={`remove-user-${index}`}
         />
       </Popconfirm>
     </Flex>

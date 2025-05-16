@@ -24,6 +24,7 @@ export const UserListWrapper = () => {
         icon={<PlusOutlined />}
         color="primary"
         variant="solid"
+        data-testid="create-user"
       >
         New
       </Button>
