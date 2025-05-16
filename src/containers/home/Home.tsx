@@ -11,6 +11,7 @@ import { UserListWrapper } from "./components";
 
 import style from "./home.module.css";
 import { HomeProvider } from "./context";
+import { Logout } from "../../components";
 
 export const Home = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -60,6 +61,7 @@ export const Home = () => {
       }}
     >
       <div className={style.container}>
+        <Logout />
         <UserListWrapper />
       </div>
     </HomeProvider>

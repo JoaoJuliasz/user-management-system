@@ -10,7 +10,7 @@ export const UserListWrapper = () => {
   const { open, onClose, onOpen } = useDrawer();
 
   return (
-    <Flex vertical={true} gap={6} className={style.wrapper}>
+    <Flex vertical={true} gap={8} className={style.wrapper}>
       <UserInfoDrawer
         title="Create user"
         onClose={onClose}
